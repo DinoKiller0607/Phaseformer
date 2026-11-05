@@ -20,7 +20,7 @@ import kornia
 
 # Training settings
 parser = argparse.ArgumentParser(description='Phaseformer')
-parser.add_argument('--dataset', required=False, default='./uw_data/', help='dataset folder')
+parser.add_argument('--dataset', required=False, default='./dataset/UIEB_data', help='dataset folder')
 parser.add_argument('--batch_size', type=int, default=1, help='training batch size')
 parser.add_argument('--test_batch_size', type=int, default=1, help='testing batch size')
 parser.add_argument('--finetune', default=False, help='to finetune')
@@ -140,8 +140,8 @@ print(f'Trainable parameters: {count_parameters(net_g)}')
 print('===> Loading datasets')
 
 root_dirs_train = {
-    'input': [ './uw_data/train/a'],      
-    'reference': [ './uw_data/train/b']
+    'input': [ 'dataset/UIEB_data/train/raw'],
+    'reference': [ 'dataset/UIEB_data/train/ref']
 }
 
 dataset_train = get_dataset(root_dirs_train)
@@ -150,8 +150,8 @@ data_loader_train = torch.utils.data.DataLoader(dataset_train, batch_size=opt.ba
 print(len(data_loader_train ))
 
 root_dirs_test = {
-    'input': ['./uw_data/test/a'],
-    'reference': ['./uw_data/test/b']
+    'input': ['./dataset/UIEB_data/test/raw'],
+    'reference': ['./dataset/UIEB_data/test/ref']
 }
 dataset_test = get_dataset(root_dirs_test)
 
